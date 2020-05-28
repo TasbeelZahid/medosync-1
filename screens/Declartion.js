@@ -16,6 +16,12 @@ import {
   CheckBox,
 } from "native-base";
 import SignaturePad from "react-native-signature-pad";
+import ApolloClient from 'apollo-boost';
+import {gql} from 'apollo-boost';
+
+const client = new ApolloClient({
+  uri: 'https://graphql-prod.azurewebsites.net/graphql',
+});
 
 export default class Declartion extends Component {
   state = {
@@ -26,6 +32,108 @@ export default class Declartion extends Component {
     drawing: "",
   };
 
+  data=async()=>{
+    console.log("i am called")
+    let query = gql`
+    mutation {
+      createPatient(data: {
+						name: "Patient"
+      Health_Insurance_Company: 1
+      Health_Membership_Number: "055555"
+      Patient_Title: "Mr"
+      Patient_Forenames: "My Forename"
+      Patient_Surname: "My Surname"
+      DOB: "1987-06-06"
+      Address: "Address"
+      Phone_Number: "+353857582281"
+      Did_Patient_Elect_To_Be_Private_YesNo: "Yes"
+      ts_Symptoms_First_Noticed: "2020-01-01 11:48"
+      ts_Doctor_First_Consulted_MedHistory: "2020-01-01 11:48"
+      Previously_Claimed_For_Illness_YesNo: "Yes"
+      ts_Date_When_Claimed_For_This_Illness_Before: "2020-01-01 11:48"
+      Name_Of_Doctor_Fisrt_Attended_Referral: "Name_Of_Doctor_Fisrt_Attended_Referral"
+      ts_Date_Of_Doctor_First_Attended_Referral: "2020-01-01 11:48"
+      Address_Of_Doctor_First_Attended_Referral: "Address_Of_Doctor_First_Attended_Referral"
+      Admission_IsResult_Of_Accident_YesNo: "Yes"
+      ts_Date_of_Accident: "2020-01-01 11:48"
+      Where_Did_Accident_Injury_Occur: "at home"
+      How_Did_Accident_Injury_Occur: "Trip"
+      Was_Accident_Injury_Fault_of_Another_Party_YesNo: "Yes"
+      Contact_Information_of_Responsible_Party: "Responsible Party Contact"
+      Responsible_Party_Insurance_Company_Information: "FBD"
+      Are_You_Claiming_Expenses_Via_PIAB_YesNo: "No"
+      Are_You_Claiming_Expenses_Via_Solicitor_YesNo: "No"
+      Name_Address_of_Solicitor_If_Applicable: "Solicitor Name"
+      Agreed_to_Declaration_Consent: "Yes"
+      Agreed_to_Dataprotection: "Yes"
+      Agreed_to_MedoSync_Information_Processing: "Yes"
+      Patient_Signature: "base64 signature "
+      ts_Date_Patient_Signature: "2020-05-27 20:18"
+      PatientPaidByCashOrCard: "Cash"
+      fever_or_Chills_YesNo: "No"
+      cough_YesNo: "No"
+      shortness_of_breath_YesNo: "No"
+      flu_like_symptoms_YesNo: "No"
+      exposed_to_confirmed_Covid19_case_YesNo: "Yes"
+      Travel_abroad_last_two_weeks_YesNo: "Yes"
+      Worked_In_Covid19_Healthcare_facility_abroad_YesNo: "Yes"
+      hospitalId: "1"
+})
+{
+   patient {
+							name
+							id
+							uuid
+							Patient_Title
+							Patient_Forenames
+							Patient_Surname
+							Health_Insurance_Company
+							Health_Membership_Number
+							MRN
+							DOB
+							Address
+							Phone_Number
+							Did_Patient_Elect_To_Be_Private_YesNo
+							ts_Symptoms_First_Noticed
+							ts_Doctor_First_Consulted_MedHistory
+							ts_Date_When_Claimed_For_This_Illness_Before
+							Name_Of_Doctor_Fisrt_Attended_Referral
+							ts_Date_Of_Doctor_First_Attended_Referral
+							Address_Of_Doctor_First_Attended_Referral
+							Admission_IsResult_Of_Accident_YesNo
+							ts_Date_of_Accident
+							Was_Accident_Injury_Fault_of_Another_Party_YesNo
+							Contact_Information_of_Responsible_Party
+							Responsible_Party_Insurance_Company_Information
+							Are_You_Claiming_Expenses_Via_PIAB_YesNo
+							Are_You_Claiming_Expenses_Via_Solicitor_YesNo
+							Name_Address_of_Solicitor_If_Applicable
+							Patient_Signature
+							ts_Date_Patient_Signature
+							ts_Admit_Date
+							ts_Discharge_Date
+						}
+    }
+}
+    `;
+    try {
+      let data = await new ApolloClient({
+        uri: 'https://graphql-prod.azurewebsites.net/graphql',
+        // headers: {
+        //   "Content-Type": "application/json"
+        // },
+      }).mutate({mutation: query});
+      if (data) {
+        console.log("data>>>>>>>>>>>",data)
+        // return data;
+      }
+    } catch (error) {
+    
+        console.log("data>>>>>>>>>>>error",error)
+      
+      alert(error);
+    }
+  }
   componentDidMount() {
     console.log(this.props.route.params.item);
   }
@@ -299,7 +407,10 @@ export default class Declartion extends Component {
               padding: 20,
             }}
             primary
-            onPress={() => this.handleNext()}
+            onPress={() => {
+              // this.handleNext()
+              this.data()
+              }}
           >
             <Text
               style={{

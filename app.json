@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "HelloWorld",
+    "name": "MedoSync",
     "slug": "medoSync",
     "platforms": ["ios", "android", "web"],
     "version": "1.0.0",
@@ -16,7 +16,8 @@
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.med.medoSync"
     }
   }
 }

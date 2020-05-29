@@ -29,7 +29,7 @@ export default class Accident extends Component {
       accident: -1,
       flag: false,
       flag2: false,
-      accidentDate: "",
+      accidentDate: new Date(),
       accidentPlace: "",
       accidentReason: "",
       anotherParty: -1,

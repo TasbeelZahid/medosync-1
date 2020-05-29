@@ -42,22 +42,22 @@ export default class home extends Component {
       chosenDate: new Date(),
 
       showReferal: false,
-      membership: undefined,
-      selected: undefined,
-      title: undefined,
-      forename: undefined,
-      surname: undefined,
-      dob: undefined,
-      address: undefined,
-      phone_number: undefined,
-      private_patient: undefined,
-      first_symtomps: undefined,
-      first_consult: undefined,
-      related: undefined,
-      related_date: undefined,
-      name_of_doctor: undefined,
-      doctor_date: undefined,
-      doctor_address: undefined,
+      membership: "",
+      selected: "",
+      title: "",
+      forename: "",
+      surname: "",
+      dob: new Date(),
+      address: "",
+      phone_number: "",
+      private_patient: -1,
+      first_symtomps: new Date(),
+      first_consult: new Date(),
+      related: -1,
+      related_date: new Date(),
+      name_of_doctor: "",
+      doctor_date: new Date(),
+      doctor_address: "",
     };
   }
   handlePrivate(value) {
@@ -101,6 +101,7 @@ export default class home extends Component {
       first_symtomps,
       first_consult,
       related,
+      related_date,
       name_of_doctor,
       doctor_date,
       doctor_address,
@@ -125,6 +126,7 @@ export default class home extends Component {
       first_symtomps,
       first_consult,
       related,
+      related_date,
       name_of_doctor,
       doctor_date,
       doctor_address,
@@ -153,36 +155,36 @@ export default class home extends Component {
     } else {
       alert("All fields required");
     }
-    AsyncStorage.setItem("homeValues", JSON.stringify(item));
+    // AsyncStorage.setItem("homeValues", JSON.stringify(item));
   }
   componentDidMount() {
-    if (AsyncStorage.getItem("homeValues")) {
-      AsyncStorage.getItem("homeValues").then((item) => {
-        this.setState({
-          fever: JSON.parse(item).fever,
-          cough: JSON.parse(item).cough,
-          breath_short: JSON.parse(item).breath_short,
-          sore_throat: JSON.parse(item).sore_throat,
-          confirmed: JSON.parse(item).confirmed,
-          travel: JSON.parse(item).travel,
-          healthcare: JSON.parse(item).healthcare,
-          membership: JSON.parse(item).membership,
-          title: JSON.parse(item).title,
-          forename: JSON.parse(item).forename,
-          surname: JSON.parse(item).surname,
-          dob: JSON.parse(item).dob,
-          address: JSON.parse(item).address,
-          phone_number: JSON.parse(item).phone_number,
-          private_patient: JSON.parse(item).private_patient,
-          first_symtomps: JSON.parse(item).first_symtomps,
-          related: JSON.parse(item).related,
-          related_date: JSON.parse(item).related_date,
-          name_of_doctor: JSON.parse(item).name_of_doctor,
-          doctor_date: JSON.parse(item).doctor_date,
-          doctor_address: JSON.parse(item).doctor_address,
-        });
-      });
-    }
+    // if (AsyncStorage.getItem("homeValues")) {
+    //   AsyncStorage.getItem("homeValues").then((item) => {
+    //     this.setState({
+    //       fever: JSON.parse(item).fever,
+    //       cough: JSON.parse(item).cough,
+    //       breath_short: JSON.parse(item).breath_short,
+    //       sore_throat: JSON.parse(item).sore_throat,
+    //       confirmed: JSON.parse(item).confirmed,
+    //       travel: JSON.parse(item).travel,
+    //       healthcare: JSON.parse(item).healthcare,
+    //       membership: JSON.parse(item).membership,
+    //       title: JSON.parse(item).title,
+    //       forename: JSON.parse(item).forename,
+    //       surname: JSON.parse(item).surname,
+    //       dob: JSON.parse(item).dob,
+    //       address: JSON.parse(item).address,
+    //       phone_number: JSON.parse(item).phone_number,
+    //       private_patient: JSON.parse(item).private_patient,
+    //       first_symtomps: JSON.parse(item).first_symtomps,
+    //       related: JSON.parse(item).related,
+    //       related_date: JSON.parse(item).related_date,
+    //       name_of_doctor: JSON.parse(item).name_of_doctor,
+    //       doctor_date: JSON.parse(item).doctor_date,
+    //       doctor_address: JSON.parse(item).doctor_address,
+    //     });
+    //   });
+    // }
   }
   render() {
     return (

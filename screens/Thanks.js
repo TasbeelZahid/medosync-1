@@ -2,12 +2,6 @@ import React, { Component } from "react";
 import { Text, StyleSheet, View, Image, Dimensions } from "react-native";
 const { width } = Dimensions.get("window");
 export default class Thanks extends Component {
-  componentDidMount() {
-    this.props.navigation.reset({
-      index: 0,
-      routes: [{ name: "Thanks" }],
-    });
-  }
   render() {
     return (
       <View style={{ padding: 10 }}>

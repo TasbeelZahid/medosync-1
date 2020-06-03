@@ -7,6 +7,7 @@ import {
   KeyboardAvoidingView,
   Platform,
   AsyncStorage,
+  Dimensions,
 } from "react-native";
 
 import {
@@ -27,6 +28,7 @@ var radio_props = [
   { label: "No", value: 0 },
   { label: "Yes", value: 1 },
 ];
+const { width } = Dimensions.get("window");
 export default class home extends Component {
   constructor(props) {
     super(props);
@@ -40,7 +42,6 @@ export default class home extends Component {
       healthcare: -1,
       private: false,
       chosenDate: new Date(),
-
       showReferal: false,
       membership: "",
       selected: "",
@@ -187,6 +188,7 @@ export default class home extends Component {
     // }
   }
   render() {
+    console.disableYellowBox = true;
     return (
       <KeyboardAvoidingView
         style={{ flex: 1 }}
@@ -467,7 +469,7 @@ export default class home extends Component {
                   />
                 </Label>
               </View>
-              <View style={{ alignItems: "center" }}>
+              <View style={{ padding: 10 }}>
                 <SmoothPinCodeInput
                   androidMode="default"
                   cellSize={29}
@@ -487,10 +489,17 @@ export default class home extends Component {
                     style={{ color: "#007aff", fontSize: 25 }}
                   />
                 }
-                placeholder="Insurance Company"
+                placeholder="Please Select Insurance Company"
                 placeholderStyle={{ color: "rgba(0,0,0,0.7)" }}
                 placeholderIconColor="#007aff"
-                style={{ width: undefined, marginTop: 10 }}
+                style={{
+                  width: width - 40,
+                  marginTop: 10,
+                  borderWidth: 1,
+                  borderColor: "gray",
+                  marginLeft: 5,
+                  marginBottom: 10,
+                }}
                 selectedValue={this.state.selected}
                 onValueChange={(e) => {
                   this.setState({ selected: e });
@@ -498,7 +507,7 @@ export default class home extends Component {
               >
                 <Picker.Item label="Laya - Dublin" value="Dublin" />
                 <Picker.Item label="Laya - Galway" value="Galway" />
-                <Picker.Item label="Laya - Limeric" value="Limeric" />
+                <Picker.Item label="Laya - Limerick" value="Limerick" />
               </Picker>
             </View>
 
@@ -604,7 +613,6 @@ export default class home extends Component {
                   onChangeText={(e) => {
                     this.setState({ phone_number: e });
                   }}
-                  keyboardType="phone-pad"
                 />
               </Item>
             </View>
@@ -887,6 +895,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#ffee00",
     fontSize: 18,
     color: "black",
+    fontWeight: "700",
     paddingVertical: 5,
   },
   Paragraph: {

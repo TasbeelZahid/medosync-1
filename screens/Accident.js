@@ -130,6 +130,7 @@ export default class Accident extends Component {
     // this.props.navigation.navigate("Declartion");
   }
   render() {
+    console.disableYellowBox = true;
     return (
       <KeyboardAvoidingView
         style={{ flex: 1 }}
@@ -315,35 +316,6 @@ export default class Accident extends Component {
                           })
                         }
                       >
-                        Are you claiming these expenses through a Solicitor?
-                      </Text>
-                      <View style={{ flexDirection: "row" }}>
-                        <RadioForm
-                          labelHorizontal={false}
-                          formHorizontal={true}
-                          style={{ margin: 10 }}
-                          initial={-1}
-                          buttonSize={20}
-                          buttonOuter
-                          animation={false}
-                          radio_props={radio_props}
-                          onPress={(e) => {
-                            this.setState({ solictorExpense: e });
-                          }}
-                        />
-                      </View>
-                    </View>
-                    <View style={[styles.Header]}>
-                      <Text
-                        style={
-                          (styles.Paragraph,
-                          {
-                            marginHorizontal: 10,
-                            fontSize: 16,
-                            marginVertical: 10,
-                          })
-                        }
-                      >
                         Or through a Personal Injuries Assesment Board? party?
                       </Text>
                       <View style={{ flexDirection: "row" }}>
@@ -360,6 +332,36 @@ export default class Accident extends Component {
                           }}
                         />
                       </View>
+                      <View style={[styles.Header]}>
+                        <Text
+                          style={
+                            (styles.Paragraph,
+                            {
+                              marginHorizontal: 10,
+                              fontSize: 16,
+                              marginVertical: 10,
+                            })
+                          }
+                        >
+                          Are you claiming these expenses through a Solicitor?
+                        </Text>
+                        <View style={{ flexDirection: "row" }}>
+                          <RadioForm
+                            labelHorizontal={false}
+                            formHorizontal={true}
+                            style={{ margin: 10 }}
+                            initial={-1}
+                            buttonSize={20}
+                            buttonOuter
+                            animation={false}
+                            radio_props={radio_props}
+                            onPress={(e) => {
+                              this.setState({ solictorExpense: e });
+                            }}
+                          />
+                        </View>
+                      </View>
+
                       <Label
                         style={{
                           marginHorizontal: 13,

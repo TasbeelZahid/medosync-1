@@ -10,7 +10,7 @@ import {
 import { Button, Icon } from "native-base";
 import ApolloClient from "apollo-boost";
 import { gql } from "apollo-boost";
-
+import moment from "moment";
 const client = new ApolloClient({
   uri: "https://graphql-prod.azurewebsites.net/graphql",
 });
@@ -173,121 +173,168 @@ export default class Verficiation extends Component {
 
   handleNext() {}
   render() {
-    console.log(this.props.route.params.item.first_symtomps);
+    console.disableYellowBox = true;
+    const {
+      membership,
+      title,
+      surname,
+      forename,
+      dob,
+      address,
+      phone_number,
+      private_patient,
+      first_symtomps,
+      first_consult,
+      related,
+      related_date,
+      doctor_name,
+      doctor_date,
+      doctor_address,
+      accident,
+      accidentDate,
+      accidentPlace,
+      accidentReason,
+      anotherParty,
+      defaulterName,
+      insuranceCompany,
+      solictorExpense,
+      personalBoard,
+      solictorName,
+      drawing,
+    } = this.props.route.params.item;
     //   const {} = this.props.route.params.item;
     return (
       <ScrollView contentContainerStyle={styles.Container}>
         <View
           style={{
-            flexDirection: "row",
-            justifyContent: "space-between",
-            marginBottom: 12,
+            backgroundColor: "white",
+            padding: 14,
+            marginBottom: 10,
+            alignItems: "center",
           }}
         >
-          <Text style={{ fontSize: 18, flex: 1 }}>Membership Ship :</Text>
-          <Text style={{ fontSize: 18, flex: 1 }}>
-            {JSON.stringify(this.props.route.params.item.membership)}
-          </Text>
+          <Text>Scroll to bottom to submit Information</Text>
         </View>
+        {membership != "" ? (
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "space-between",
+              marginBottom: 12,
+            }}
+          >
+            <Text style={{ fontSize: 18, flex: 1 }}>Membership Ship :</Text>
+            <Text style={{ fontSize: 18, flex: 1 }}>
+              {JSON.stringify(this.props.route.params.item.membership)}
+            </Text>
+          </View>
+        ) : null}
 
-        <View
-          style={{
-            flexDirection: "row",
-            justifyContent: "space-between",
-            marginBottom: 12,
-          }}
-        >
-          <Text style={{ fontSize: 18, flex: 1 }}>MRN Number :</Text>
-          <Text style={{ fontSize: 18, flex: 1 }}>
-            {JSON.stringify(this.props.route.params.item.selected)}
-          </Text>
-        </View>
-        <View
-          style={{
-            flexDirection: "row",
-            justifyContent: "space-between",
-            marginBottom: 12,
-          }}
-        >
-          <Text style={{ fontSize: 18, flex: 1 }}>Patient Title :</Text>
-          <Text style={{ fontSize: 18, flex: 1 }}>
-            {JSON.stringify(this.props.route.params.item.title)}
-          </Text>
-        </View>
-        <View
-          style={{
-            flexDirection: "row",
-            justifyContent: "space-between",
-            marginBottom: 12,
-          }}
-        >
-          <Text style={{ fontSize: 18, flex: 1 }}>Patient Surname :</Text>
-          <Text style={{ fontSize: 18, flex: 1 }}>
-            {JSON.stringify(this.props.route.params.item.surname)}
-          </Text>
-        </View>
-        <View
-          style={{
-            flexDirection: "row",
-            justifyContent: "space-between",
-            marginBottom: 12,
-          }}
-        >
-          <Text style={{ fontSize: 18, flex: 1 }}>Patient forname :</Text>
-          <Text style={{ fontSize: 18, flex: 1 }}>
-            {JSON.stringify(this.props.route.params.item.forename)}
-          </Text>
-        </View>
-        <View
-          style={{
-            flexDirection: "row",
-            justifyContent: "space-between",
-            marginBottom: 12,
-          }}
-        >
-          <Text style={{ fontSize: 18, flex: 1 }}>DOB : </Text>
-          <Text style={{ fontSize: 18, flex: 1 }}>
-            {JSON.stringify(this.props.route.params.item.dob)}
-          </Text>
-        </View>
-        <View
-          style={{
-            flexDirection: "row",
-            justifyContent: "space-between",
-            marginBottom: 12,
-          }}
-        >
-          <Text style={{ fontSize: 18, flex: 1 }}>Address :</Text>
-          <Text style={{ fontSize: 18, flex: 1 }}>
-            {JSON.stringify(this.props.route.params.item.address)}
-          </Text>
-        </View>
-        <View
-          style={{
-            flexDirection: "row",
-            justifyContent: "space-between",
-            marginBottom: 12,
-          }}
-        >
-          <Text style={{ fontSize: 18, flex: 1 }}>Phone number :</Text>
-          <Text style={{ fontSize: 18, flex: 1 }}>
-            {JSON.stringify(this.props.route.params.item.phone_number)}
-          </Text>
-        </View>
-        <View
-          style={{
-            flexDirection: "row",
-            justifyContent: "space-between",
-            marginBottom: 12,
-          }}
-        >
-          <Text style={{ fontSize: 18, flex: 1 }}>Patient Private :</Text>
-          <Text style={{ fontSize: 18, flex: 1 }}>
-            {JSON.stringify(this.props.route.params.item.private_patient) == 0
-              ? "No"
-              : "Yes"}
-          </Text>
-        </View>
+        {title != "" ? (
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "space-between",
+              marginBottom: 12,
+            }}
+          >
+            <Text style={{ fontSize: 18, flex: 1 }}>Patient Title :</Text>
+            <Text style={{ fontSize: 18, flex: 1 }}>
+              {JSON.stringify(this.props.route.params.item.title)}
+            </Text>
+          </View>
+        ) : null}
+
+        {surname != "" ? (
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "space-between",
+              marginBottom: 12,
+            }}
+          >
+            <Text style={{ fontSize: 18, flex: 1 }}>Patient Surname :</Text>
+            <Text style={{ fontSize: 18, flex: 1 }}>
+              {JSON.stringify(this.props.route.params.item.surname)}
+            </Text>
+          </View>
+        ) : null}
+
+        {forename != "" ? (
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "space-between",
+              marginBottom: 12,
+            }}
+          >
+            <Text style={{ fontSize: 18, flex: 1 }}>Patient forname :</Text>
+            <Text style={{ fontSize: 18, flex: 1 }}>
+              {JSON.stringify(this.props.route.params.item.forename)}
+            </Text>
+          </View>
+        ) : null}
+
+        {dob != "" ? (
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "space-between",
+              marginBottom: 12,
+            }}
+          >
+            <Text style={{ fontSize: 18, flex: 1 }}>DOB : </Text>
+            <Text style={{ fontSize: 18, flex: 1 }}>
+              {dob ? moment(dob).format("d-M-yy") : null}
+            </Text>
+          </View>
+        ) : null}
+        {address != "" ? (
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "space-between",
+              marginBottom: 12,
+            }}
+          >
+            <Text style={{ fontSize: 18, flex: 1 }}>Address :</Text>
+            <Text style={{ fontSize: 18, flex: 1 }}>
+              {JSON.stringify(this.props.route.params.item.address)}
+            </Text>
+          </View>
+        ) : null}
+
+        {phone_number != "" ? (
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "space-between",
+              marginBottom: 12,
+            }}
+          >
+            <Text style={{ fontSize: 18, flex: 1 }}>Phone number :</Text>
+            <Text style={{ fontSize: 18, flex: 1 }}>
+              {JSON.stringify(this.props.route.params.item.phone_number)}
+            </Text>
+          </View>
+        ) : null}
+
+        {private_patient !== -1 ? (
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "space-between",
+              marginBottom: 12,
+            }}
+          >
+            <Text style={{ fontSize: 18, flex: 1 }}>Patient Private :</Text>
+            <Text style={{ fontSize: 18, flex: 1 }}>
+              {JSON.stringify(this.props.route.params.item.private_patient) == 0
+                ? "No"
+                : "Yes"}
+            </Text>
+          </View>
+        ) : null}
         <View
           style={{
             flexDirection: "row",
@@ -299,7 +346,7 @@ export default class Verficiation extends Component {
             Symtomps First Noticed :
           </Text>
           <Text style={{ fontSize: 18, flex: 1 }}>
-            {JSON.stringify(this.props.route.params.item.first_symtomps)}
+            {moment(first_symtomps).format("d-M-yy")}
           </Text>
         </View>
         <View
@@ -313,25 +360,28 @@ export default class Verficiation extends Component {
             Doctor's First consulted Med History :
           </Text>
           <Text style={{ fontSize: 18, flex: 1 }}>
-            {JSON.stringify(this.props.route.params.item.first_consult)}
+            {moment(first_consult).format("d-M-yy")}
           </Text>
         </View>
-        <View
-          style={{
-            flexDirection: "row",
-            justifyContent: "space-between",
-            marginBottom: 12,
-          }}
-        >
-          <Text style={{ fontSize: 18, flex: 1 }}>
-            Previously Claimed for illness
-          </Text>
-          <Text style={{ fontSize: 18, flex: 1 }}>
-            {JSON.stringify(this.props.route.params.item.related) == 0
-              ? "No"
-              : "Yes"}
-          </Text>
-        </View>
+
+        {related != -1 ? (
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "space-between",
+              marginBottom: 12,
+            }}
+          >
+            <Text style={{ fontSize: 18, flex: 1 }}>
+              Previously Claimed for illness
+            </Text>
+            <Text style={{ fontSize: 18, flex: 1 }}>
+              {JSON.stringify(this.props.route.params.item.related) == 0
+                ? "No"
+                : "Yes"}
+            </Text>
+          </View>
+        ) : null}
 
         <View
           style={{
@@ -344,68 +394,79 @@ export default class Verficiation extends Component {
             Date when claimed for illness Before:
           </Text>
           <Text style={{ fontSize: 18, flex: 1 }}>
-            {JSON.stringify(this.props.route.params.item.related_date)}
-          </Text>
-        </View>
-        <View
-          style={{
-            flexDirection: "row",
-            justifyContent: "space-between",
-            marginBottom: 12,
-          }}
-        >
-          <Text style={{ fontSize: 18, flex: 1 }}>
-            Name Of Doctor First Attended Referral: :
-          </Text>
-          <Text style={{ fontSize: 18, flex: 1 }}>
-            {JSON.stringify(this.props.route.params.item.doctor_name)}
+            {moment(related_date).format("d-M-yy")}
           </Text>
         </View>
 
-        <View
-          style={{
-            flexDirection: "row",
-            justifyContent: "space-between",
-            marginBottom: 12,
-          }}
-        >
-          <Text style={{ fontSize: 18, flex: 1 }}>
-            Date Of Doctor First Attended Referral:
-          </Text>
-          <Text style={{ fontSize: 18, flex: 1 }}>
-            {JSON.stringify(this.props.route.params.item.doctor_date)}
-          </Text>
-        </View>
-        <View
-          style={{
-            flexDirection: "row",
-            justifyContent: "space-between",
-            marginBottom: 12,
-          }}
-        >
-          <Text style={{ fontSize: 18, flex: 1 }}>
-            Address Of Doctor First Attended Referral:
-          </Text>
-          <Text style={{ fontSize: 18, flex: 1 }}>
-            {JSON.stringify(this.props.route.params.item.doctor_address)}
-          </Text>
-        </View>
-        <View
-          style={{
-            flexDirection: "row",
-            justifyContent: "space-between",
-            marginBottom: 12,
-          }}
-        >
-          <Text style={{ fontSize: 18, flex: 1 }}>
-            Admission_IsResult_Of_Accident_YesNo :
-          </Text>
-          <Text style={{ fontSize: 18, flex: 1 }}>
-            {JSON.stringify(this.props.route.params.item.accident) == 0
-              ? "NO"
-              : "Yes"}
-          </Text>
-        </View>
+        {doctor_name != undefined ? (
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "space-between",
+              marginBottom: 12,
+            }}
+          >
+            <Text style={{ fontSize: 18, flex: 1 }}>
+              Name Of Doctor First Attended Referral: :
+            </Text>
+            <Text style={{ fontSize: 18, flex: 1 }}>
+              {JSON.stringify(this.props.route.params.item.doctor_name)}
+            </Text>
+          </View>
+        ) : null}
+
+        {doctor_date != undefined ? (
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "space-between",
+              marginBottom: 12,
+            }}
+          >
+            <Text style={{ fontSize: 18, flex: 1 }}>
+              Date Of Doctor First Attended Referral:
+            </Text>
+            <Text style={{ fontSize: 18, flex: 1 }}>
+              {moment(doctor_date).format("d-M-yy")}
+            </Text>
+          </View>
+        ) : null}
+
+        {doctor_address != "" ? (
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "space-between",
+              marginBottom: 12,
+            }}
+          >
+            <Text style={{ fontSize: 18, flex: 1 }}>
+              Address Of Doctor First Attended Referral:
+            </Text>
+            <Text style={{ fontSize: 18, flex: 1 }}>
+              {JSON.stringify(this.props.route.params.item.doctor_address)}
+            </Text>
+          </View>
+        ) : null}
+
+        {accident != -1 ? (
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "space-between",
+              marginBottom: 12,
+            }}
+          >
+            <Text style={{ fontSize: 18, flex: 1 }}>
+              Admission_IsResult_Of_Accident_YesNo :
+            </Text>
+            <Text style={{ fontSize: 18, flex: 1 }}>
+              {JSON.stringify(this.props.route.params.item.accident) == 0
+                ? "NO"
+                : "Yes"}
+            </Text>
+          </View>
+        ) : null}
         <View
           style={{
             flexDirection: "row",
@@ -415,37 +476,44 @@ export default class Verficiation extends Component {
         >
           <Text style={{ fontSize: 18, flex: 1 }}>Date of Accident :</Text>
           <Text style={{ fontSize: 18, flex: 1 }}>
-            {JSON.stringify(this.props.route.params.item.accidentDate)}
+            {moment(accidentDate).format("d-M-yy")}
           </Text>
         </View>
-        <View
-          style={{
-            flexDirection: "row",
-            justifyContent: "space-between",
-            marginBottom: 12,
-          }}
-        >
-          <Text style={{ fontSize: 18, flex: 1 }}>
-            Where Did Accident Injury Occur:
-          </Text>
-          <Text style={{ fontSize: 18, flex: 1 }}>
-            {JSON.stringify(this.props.route.params.item.accidentPlace)}
-          </Text>
-        </View>
-        <View
-          style={{
-            flexDirection: "row",
-            justifyContent: "space-between",
-            marginBottom: 12,
-          }}
-        >
-          <Text style={{ fontSize: 18, flex: 1 }}>
-            How Did Accident Injury Occur:
-          </Text>
-          <Text style={{ fontSize: 18, flex: 1 }}>
-            {JSON.stringify(this.props.route.params.item.accidentReason)}
-          </Text>
-        </View>
+
+        {accidentPlace != "" ? (
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "space-between",
+              marginBottom: 12,
+            }}
+          >
+            <Text style={{ fontSize: 18, flex: 1 }}>
+              Where Did Accident Injury Occur:
+            </Text>
+            <Text style={{ fontSize: 18, flex: 1 }}>
+              {JSON.stringify(this.props.route.params.item.accidentPlace)}
+            </Text>
+          </View>
+        ) : null}
+
+        {accidentReason != "" ? (
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "space-between",
+              marginBottom: 12,
+            }}
+          >
+            <Text style={{ fontSize: 18, flex: 1 }}>
+              How Did Accident Injury Occur:
+            </Text>
+            <Text style={{ fontSize: 18, flex: 1 }}>
+              {JSON.stringify(this.props.route.params.item.accidentReason)}
+            </Text>
+          </View>
+        ) : null}
+
         <View
           style={{
             flexDirection: "row",
@@ -464,34 +532,41 @@ export default class Verficiation extends Component {
               : "Yes"}
           </Text>
         </View>
-        <View
-          style={{
-            flexDirection: "row",
-            justifyContent: "space-between",
-            marginBottom: 12,
-          }}
-        >
-          <Text style={{ fontSize: 18, flex: 1 }}>
-            Contact Information of Responsible Party:
-          </Text>
-          <Text style={{ fontSize: 18, flex: 1 }}>
-            {JSON.stringify(this.props.route.params.item.defaulterName)}
-          </Text>
-        </View>
-        <View
-          style={{
-            flexDirection: "row",
-            justifyContent: "space-between",
-            marginBottom: 12,
-          }}
-        >
-          <Text style={{ fontSize: 18, flex: 1 }}>
-            Responsible Party_Insurance_Company_Information :
-          </Text>
-          <Text style={{ fontSize: 18, flex: 1 }}>
-            {JSON.stringify(this.props.route.params.item.insuranceCompany)}
-          </Text>
-        </View>
+
+        {defaulterName != "" ? (
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "space-between",
+              marginBottom: 12,
+            }}
+          >
+            <Text style={{ fontSize: 18, flex: 1 }}>
+              Contact Information of Responsible Party:
+            </Text>
+            <Text style={{ fontSize: 18, flex: 1 }}>
+              {JSON.stringify(this.props.route.params.item.defaulterName)}
+            </Text>
+          </View>
+        ) : null}
+
+        {insuranceCompany != "" ? (
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "space-between",
+              marginBottom: 12,
+            }}
+          >
+            <Text style={{ fontSize: 18, flex: 1 }}>
+              Responsible Party_Insurance_Company_Information :
+            </Text>
+            <Text style={{ fontSize: 18, flex: 1 }}>
+              {JSON.stringify(this.props.route.params.item.insuranceCompany)}
+            </Text>
+          </View>
+        ) : null}
+
         <View
           style={{
             flexDirection: "row",
@@ -530,20 +605,23 @@ export default class Verficiation extends Component {
               : "Yes"}
           </Text>
         </View>
-        <View
-          style={{
-            flexDirection: "row",
-            justifyContent: "space-between",
-            marginBottom: 12,
-          }}
-        >
-          <Text style={{ fontSize: 18, flex: 1 }}>
-            Name Address of Solicitor If Applicable:
-          </Text>
-          <Text style={{ fontSize: 18, flex: 1 }}>
-            {JSON.stringify(this.props.route.params.item.solictorName)}
-          </Text>
-        </View>
+
+        {solictorName != "" ? (
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "space-between",
+              marginBottom: 12,
+            }}
+          >
+            <Text style={{ fontSize: 18, flex: 1 }}>
+              Name Address of Solicitor If Applicable:
+            </Text>
+            <Text style={{ fontSize: 18, flex: 1 }}>
+              {JSON.stringify(this.props.route.params.item.solictorName)}
+            </Text>
+          </View>
+        ) : null}
         <Text style={{ fontSize: 18 }}>
           You signature verifies that you have agreed to Laya's tearms and
           conditions as outlined in Section 5. i.e. Data Protection Statement

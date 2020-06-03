@@ -572,7 +572,6 @@ export default class home extends Component {
                 <DatePicker
                   defaultDate={new Date()}
                   locale={"en"}
-                  maximumDate={new Date()}
                   timeZoneOffsetInMinutes={undefined}
                   modalTransparent={false}
                   animationType={"fade"}

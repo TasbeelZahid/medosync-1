@@ -8,6 +8,7 @@ import {
   Platform,
   AsyncStorage,
   Dimensions,
+  Image,
 } from "react-native";
 
 import {
@@ -133,22 +134,22 @@ export default class home extends Component {
       doctor_address,
     };
     if (
-      fever !== -1
-      // cough !== -1 &&
-      // breath_short !== -1 &&
-      // sore_throat !== -1 &&
-      // confirmed !== -1 &&
-      // travel !== -1 &&
-      // healthcare !== -1 &&
-      // selected !== undefined &&
-      // title !== undefined &&
-      // forename !== undefined &&
-      // surname !== undefined &&
-      // dob !== undefined &&
-      // address !== undefined &&
-      // phone_number !== undefined &&
-      // private_patient !== undefined &&
-      // first_symtomps !== undefined
+      fever !== -1 &&
+      cough !== -1 &&
+      breath_short !== -1 &&
+      sore_throat !== -1 &&
+      confirmed !== -1 &&
+      travel !== -1 &&
+      healthcare !== -1 &&
+      selected !== undefined &&
+      title !== undefined &&
+      forename !== undefined &&
+      surname !== undefined &&
+      dob !== undefined &&
+      address !== undefined &&
+      phone_number !== undefined &&
+      private_patient !== undefined &&
+      first_symtomps !== undefined
     ) {
       this.props.navigation.navigate("Accident", {
         item: item,
@@ -194,6 +195,20 @@ export default class home extends Component {
         style={{ flex: 1 }}
         behavior={Platform.OS == "ios" ? "padding" : "height"}
       >
+        <View
+          style={{
+            width,
+            height: 100,
+            alignItems: "center",
+            justifyContent: "center",
+            backgroundColor: "white",
+          }}
+        >
+          <Image
+            source={require("../assets/logo.png")}
+            style={{ resizeMode: "contain", marginTop: 30 }}
+          />
+        </View>
         <ScrollView contentContainerStyle={styles.Container}>
           <View style={{ marginBottom: 10 }}>
             <View style={styles.Header}>
@@ -574,6 +589,7 @@ export default class home extends Component {
                   locale={"en"}
                   timeZoneOffsetInMinutes={undefined}
                   modalTransparent={false}
+                  style={{ backgroundColor: "red" }}
                   animationType={"fade"}
                   androidMode={"default"}
                   placeHolderText="select"

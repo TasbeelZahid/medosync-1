@@ -5,17 +5,22 @@ import {
   View,
   ScrollView,
   KeyboardAvoidingView,
+  Dimensions,
+  Image,
 } from "react-native";
 import {
-  DatePicker,
   Item,
   Input,
   Label,
   Right,
   Button,
   Icon,
+  Left,
+  DatePicker,
 } from "native-base";
+const { width } = Dimensions.get("window");
 import moment from "moment";
+
 import RadioForm from "react-native-simple-radio-button";
 var radio_props = [
   { label: "No", value: 0 },
@@ -136,6 +141,21 @@ export default class Accident extends Component {
         style={{ flex: 1 }}
         behavior={Platform.OS == "ios" ? "padding" : "height"}
       >
+        <View
+          style={{
+            width,
+            height: 100,
+            alignItems: "center",
+            justifyContent: "center",
+            backgroundColor: "white",
+          }}
+        >
+          <Image
+            source={require("../assets/logo.png")}
+            style={{ resizeMode: "contain", marginTop: 30 }}
+          />
+        </View>
+
         <ScrollView contentContainerStyle={styles.Container}>
           <View>
             <View style={[styles.Header, styles.borders]}>
@@ -388,6 +408,29 @@ export default class Accident extends Component {
             ) : null}
             <View style={styles.Header}>
               <Item style={{ borderBottomColor: "white" }}>
+                <Left>
+                  <Button
+                    style={{
+                      alignItems: "center",
+                      justifyContent: "center",
+                      padding: 20,
+                    }}
+                    primary
+                    onPress={() => {
+                      this.props.navigation.goBack("Home");
+                    }}
+                  >
+                    <Text
+                      style={{
+                        color: "white",
+                        fontSize: 20,
+                        textAlign: "center",
+                      }}
+                    >
+                      Previous
+                    </Text>
+                  </Button>
+                </Left>
                 <Right>
                   <Button
                     style={{

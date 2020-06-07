@@ -10,9 +10,9 @@ import {
   Dimensions,
   Image,
 } from "react-native";
+import DatePicker from "react-native-datepicker";
 
 import {
-  DatePicker,
   Item,
   Input,
   Label,
@@ -580,30 +580,40 @@ export default class home extends Component {
                   value={this.state.surname}
                 />
               </Item>
-              <Item>
-                <Label style={{ marginHorizontal: 13, fontSize: 16 }}>
-                  Date of birth
-                </Label>
-                <DatePicker
-                  defaultDate={new Date()}
-                  locale={"en"}
-                  timeZoneOffsetInMinutes={undefined}
-                  modalTransparent={false}
-                  style={{ backgroundColor: "red" }}
-                  animationType={"fade"}
-                  androidMode={"default"}
-                  placeHolderText="select"
-                  textStyle={{ color: "green" }}
-                  placeHolderTextStyle={{ color: "#d3d3d3" }}
-                  onDateChange={(e) => {
-                    this.setState({ dob: e });
-                  }}
-                  disabled={false}
-                  formatChosenDate={(date) => {
-                    return moment(date).format("DD-MM-YYYY");
-                  }}
-                />
-              </Item>
+              <Label
+                style={{
+                  marginHorizontal: 13,
+                  marginTop: 20,
+                  fontSize: 16,
+                  color: "gray",
+                }}
+              >
+                Date of Birth
+              </Label>
+              <DatePicker
+                style={{ width: width - 30, marginTop: 20 }}
+                date={this.state.dob}
+                mode="date"
+                placeholder="Select date"
+                confirmBtnText="Confirm"
+                cancelBtnText="Cancel"
+                customStyles={{
+                  dateIcon: {
+                    position: "absolute",
+                    left: 0,
+                    top: 4,
+                    marginLeft: 0,
+                  },
+                  dateInput: {
+                    marginLeft: 36,
+                  },
+                  // ... You can check the source to find the other keys.
+                }}
+                onDateChange={(date) => {
+                  this.setState({ dob: date });
+                }}
+              />
+
               <Item floatingLabel style={{ marginTop: 10 }}>
                 <Label style={{ marginHorizontal: 13, fontSize: 16 }}>
                   Address
@@ -680,54 +690,65 @@ export default class home extends Component {
               <Text style={styles.SubHeading}>
                 2. History of illness Section
               </Text>
-
-              <Label style={{ marginHorizontal: 13, fontSize: 16 }}>
+              <Label
+                style={{ marginHorizontal: 13, marginTop: 20, fontSize: 16 }}
+              >
                 When did you/the patient first notice symtomps? (DD-MM-YYYY)
               </Label>
               <DatePicker
-                defaultDate={new Date()}
-                minimumDate={new Date(2000, 1, 1)}
-                maximumDate={new Date()}
-                locale={"en"}
-                timeZoneOffsetInMinutes={undefined}
-                modalTransparent={false}
-                animationType={"fade"}
-                androidMode={"default"}
-                placeHolderText="select"
-                textStyle={{ color: "green", fontSize: 18 }}
-                placeHolderTextStyle={{ color: "#d3d3d3" }}
-                onDateChange={(e) => {
-                  this.setState({ first_symtomps: e });
+                style={{ width: width - 30, marginVertical: 20 }}
+                date={this.state.first_symtomps}
+                mode="date"
+                placeholder="Select date"
+                maxDate={new Date()}
+                confirmBtnText="Confirm"
+                cancelBtnText="Cancel"
+                customStyles={{
+                  dateIcon: {
+                    position: "absolute",
+                    left: 0,
+                    top: 4,
+                    marginLeft: 0,
+                  },
+                  dateInput: {
+                    marginLeft: 36,
+                  },
+                  // ... You can check the source to find the other keys.
                 }}
-                disabled={false}
-                formatChosenDate={(date) => {
-                  return moment(date).format("DD-MM-YYYY");
+                onDateChange={(date) => {
+                  this.setState({ first_symtomps: date });
                 }}
               />
             </View>
             <View style={styles.Header}>
-              <Label style={{ marginHorizontal: 13, fontSize: 16 }}>
+              <Label
+                style={{ marginHorizontal: 13, marginTop: 20, fontSize: 16 }}
+              >
                 When did you/the patient first consult with a doctor for this
                 condition? (DD-MM-YYYY)
               </Label>
               <DatePicker
-                defaultDate={new Date()}
-                minimumDate={new Date(2000, 1, 1)}
-                maximumDate={new Date()}
-                locale={"en"}
-                timeZoneOffsetInMinutes={undefined}
-                modalTransparent={false}
-                animationType={"fade"}
-                androidMode={"default"}
-                placeHolderText="select"
-                textStyle={{ color: "green", fontSize: 18 }}
-                placeHolderTextStyle={{ color: "#d3d3d3" }}
-                onDateChange={(e) => {
-                  this.setState({ first_consult: e });
+                style={{ width: width - 30, marginVertical: 20 }}
+                date={this.state.first_consult}
+                mode="date"
+                placeholder="Select date"
+                maxDate={new Date()}
+                confirmBtnText="Confirm"
+                cancelBtnText="Cancel"
+                customStyles={{
+                  dateIcon: {
+                    position: "absolute",
+                    left: 0,
+                    top: 4,
+                    marginLeft: 0,
+                  },
+                  dateInput: {
+                    marginLeft: 36,
+                  },
+                  // ... You can check the source to find the other keys.
                 }}
-                disabled={false}
-                formatChosenDate={(date) => {
-                  return moment(date).format("DD-MM-YYYY");
+                onDateChange={(date) => {
+                  this.setState({ first_consult: date });
                 }}
               />
             </View>
@@ -758,27 +779,33 @@ export default class home extends Component {
                   onPress={(e) => this.handlePrevious(e)}
                 />
               </View>
-              <Label style={{ marginHorizontal: 13, fontSize: 16 }}>
+              <Label
+                style={{ marginHorizontal: 13, marginTop: 20, fontSize: 16 }}
+              >
                 If yes, when ? (DD-MM-YYYY)
               </Label>
               <DatePicker
-                defaultDate={new Date()}
-                minimumDate={new Date(2000, 1, 1)}
-                maximumDate={new Date()}
-                locale={"en"}
-                timeZoneOffsetInMinutes={undefined}
-                modalTransparent={false}
-                animationType={"fade"}
-                androidMode={"default"}
-                placeHolderText="select"
-                textStyle={{ color: "green", fontSize: 18 }}
-                placeHolderTextStyle={{ color: "#d3d3d3" }}
-                onDateChange={(e) => {
-                  this.setState({ related_date: e });
+                style={{ width: width - 30, marginVertical: 20 }}
+                date={this.state.related_date}
+                mode="date"
+                placeholder="Select date"
+                maxDate={new Date()}
+                confirmBtnText="Confirm"
+                cancelBtnText="Cancel"
+                customStyles={{
+                  dateIcon: {
+                    position: "absolute",
+                    left: 0,
+                    top: 4,
+                    marginLeft: 0,
+                  },
+                  dateInput: {
+                    marginLeft: 36,
+                  },
+                  // ... You can check the source to find the other keys.
                 }}
-                disabled={false}
-                formatChosenDate={(date) => {
-                  return moment(date).format("DD-MM-YYYY");
+                onDateChange={(date) => {
+                  this.setState({ related_date: date });
                 }}
               />
             </View>
@@ -815,27 +842,37 @@ export default class home extends Component {
                 </Item>
               </View>
               <View style={styles.Header}>
-                <Label style={{ marginHorizontal: 13, fontSize: 16 }}>
+                <Label
+                  style={{
+                    marginHorizontal: 13,
+                    marginTop: 20,
+                    fontSize: 16,
+                  }}
+                >
                   Date (DD-MM-YYYY):
                 </Label>
                 <DatePicker
-                  defaultDate={new Date()}
-                  minimumDate={new Date(2000, 1, 1)}
-                  maximumDate={new Date()}
-                  locale={"en"}
-                  timeZoneOffsetInMinutes={undefined}
-                  modalTransparent={false}
-                  animationType={"fade"}
-                  androidMode={"default"}
-                  placeHolderText="select"
-                  textStyle={{ color: "green", fontSize: 18 }}
-                  placeHolderTextStyle={{ color: "#d3d3d3" }}
-                  onDateChange={(e) => {
-                    this.setState({ doctor_date: e });
+                  style={{ width: width - 30, marginVertical: 20 }}
+                  date={this.state.doctor_date}
+                  mode="date"
+                  placeholder="Select date"
+                  maxDate={new Date()}
+                  confirmBtnText="Confirm"
+                  cancelBtnText="Cancel"
+                  customStyles={{
+                    dateIcon: {
+                      position: "absolute",
+                      left: 0,
+                      top: 4,
+                      marginLeft: 0,
+                    },
+                    dateInput: {
+                      marginLeft: 36,
+                    },
+                    // ... You can check the source to find the other keys.
                   }}
-                  disabled={false}
-                  formatChosenDate={(date) => {
-                    return moment(date).format("DD-MM-YYYY");
+                  onDateChange={(date) => {
+                    this.setState({ doctor_date: date });
                   }}
                 />
               </View>

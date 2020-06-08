@@ -310,7 +310,6 @@ export default class Declartion extends Component {
                     this.state.show ? (
                       <View style={{ height: 400, }}
                         onStartShouldSetResponderCapture={() => {
-                          // this.setState({ enableScrollViewScroll: false });
                         }}>
                         <SignaturePad
                           onError={this._signaturePadError}

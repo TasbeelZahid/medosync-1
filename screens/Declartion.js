@@ -297,7 +297,6 @@ export default class Declartion extends Component {
                         this.setState({ enableScrollViewScroll: false });
                       }}
 
-                      
                     >
                       <SignatureScreen onOK={signature => {
                         console.log('signature', signature);
